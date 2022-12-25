@@ -29,7 +29,7 @@
         makeFlags = ["TARGET=example"];
         preBuild = pkgs.devkitNix.devkitA64.shellHook;
         installPhase = ''
-          cp switch.nro $out
+          cp example.nro $out
         '';
       };
     });

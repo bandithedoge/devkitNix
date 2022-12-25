@@ -29,7 +29,7 @@
         makeFlags = ["TARGET=example"];
         preBuild = pkgs.devkitNix.devkitPPC.shellHook;
         installPhase = ''
-          cp gamecube.dol $out
+          cp example.dol $out
         '';
       };
     });
