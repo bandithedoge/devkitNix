@@ -1,0 +1,8 @@
+.direnv/
+result
+build/
+*.elf
+*.nacp
+*.nro
+*.nds
+*.dol
