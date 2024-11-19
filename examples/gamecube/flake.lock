@@ -6,14 +6,17 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 0,
-        "narHash": "sha256-3sDZDDjD2btJYAMLmEjHMc1imuhiFGWB6hY/ZMl0iyo=",
-        "path": "../../.",
-        "type": "path"
+        "lastModified": 1732054644,
+        "narHash": "sha256-WfYXkVaJzqnuP3S7AF3O+Ee6Mrwf3bvrMAW8sZ3YTPQ=",
+        "owner": "bandithedoge",
+        "repo": "devkitNix",
+        "rev": "d500ad9908eb9046c6b269c11b63d131856c2ac4",
+        "type": "github"
       },
       "original": {
-        "path": "../../.",
-        "type": "path"
+        "owner": "bandithedoge",
+        "repo": "devkitNix",
+        "type": "github"
       }
     },
     "flake-utils": {
