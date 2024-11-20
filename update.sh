@@ -1,10 +1,13 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i bash -p nix-prefetch-docker
+#!nix-shell -i bash -p nix-prefetch-docker fd
 # shellcheck shell=bash
 
 function fetch() {
-  nix-prefetch-docker --image-name "devkitpro/$1" --json --quiet > "sources/$1.json"
+    echo "fetching $1..."
+    nix-prefetch-docker --image-name "devkitpro/$1" --json --quiet >"sources/$1.json"
 }
+
+fd flake.nix -x nix flake update --flake "{//}"
 
 mkdir -p sources
 
