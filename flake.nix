@@ -16,10 +16,18 @@
     }:
       pkgs.stdenv.mkDerivation (finalAttrs: {
         inherit name;
-
         src = pkgs.dockerTools.pullImage (pkgs.lib.importJSON src);
 
-        nativeBuildInputs = with pkgs; [autoPatchelfHook];
+        nativeBuildInputs = with pkgs; [
+          autoPatchelfHook
+        ];
+
+        buildInputs = with pkgs; [
+          ncurses
+          stdenv.cc.cc.lib
+        ];
+
+        dontPatchShebangs = true;
 
         phases = ["buildPhase" "fixupPhase"];
 
@@ -34,20 +42,6 @@
           mkdir -p $out
           cp -r opt $out/opt
           ln -sf $out/opt/devkitpro/tools/bin $out/bin
-        '';
-
-        fixupPhase = let
-          libPath = pkgs.lib.makeLibraryPath (with pkgs; [
-            stdenv.cc.cc.lib
-          ]);
-        in ''
-          for bin in $(find $out -executable -follow -type f)
-          do
-            file $bin | grep "ELF" && patchelf \
-              --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
-              --set-rpath "${libPath}" \
-              $bin || continue
-          done
         '';
 
         passthru = rec {
