@@ -1,7 +1,7 @@
 {
   "imageName": "devkitpro/devkitarm",
   "imageDigest": "sha256:315397a3a67d6f5f7ece420f51069d851c41ecc049a8cd1be2aa98ea3e632a0c",
-  "sha256": "12rm6wbdp0a1jq6p4209zcmzjjfsnpg67x00jcys1vdb7rl15x1x",
+  "hash": "sha256-PfQSaD6r7aA9kwD0Y9612kn5K/sJCHINlkGB2xY3NYs=",
   "finalImageName": "devkitpro/devkitarm",
   "finalImageTag": "latest"
 }
