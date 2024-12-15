@@ -22,6 +22,8 @@ jobs:
         run: |
           chmod +x update.sh
           ./update.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build examples
         run: |
