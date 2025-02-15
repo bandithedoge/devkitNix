@@ -42,6 +42,7 @@
           mkdir -p $out
           cp -r opt $out/opt
           ln -sf $out/opt/devkitpro/tools/bin $out/bin
+          rm $out/opt/devkitpro/pacman/share/pacman/keyrings
         '';
 
         passthru = rec {
