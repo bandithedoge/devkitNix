@@ -8,6 +8,7 @@ on:
       - main
 jobs:
   update:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -26,8 +27,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build examples
-        run: |
-          nix build ./examples/* --override-input devkitNix .
+        uses: ./.github/workflows/build.yml
 
       - name: Add & Commit
         uses: EndBug/add-and-commit@v9.1.1
