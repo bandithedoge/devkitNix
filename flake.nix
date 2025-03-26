@@ -53,7 +53,7 @@
             export DEVKITARM="$DEVKITPRO/devkitARM"
             export DEVKITPPC="$DEVKITPRO/devkitPPC"
             export CPATH=${CPATH}
-            export PATH="${pkgs.lib.makeBinPath ["$DEVKITPRO" "$DEVKITARM" "$DEVKITPPC"]}:$PATH}"
+            export PATH="${pkgs.lib.makeBinPath ["$DEVKITPRO" "$DEVKITARM" "$DEVKITPPC"]}:$PATH"
           '';
         };
       });
