@@ -17,5 +17,4 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
 
       - name: Build examples
-        run: |
-          nix build ./examples/* --override-input devkitNix .
+        run: nix build ./examples/* --override-input devkitNix .
