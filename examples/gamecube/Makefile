@@ -8,7 +8,6 @@ $(error "Please set DEVKITPPC in your environment. export DEVKITPPC=<path to>dev
 endif
 
 include $(DEVKITPPC)/gamecube_rules
-NIX_VERSION = '"$(shell nix --version)"'
 
 #---------------------------------------------------------------------------------
 # TARGET is the name of the output
@@ -26,7 +25,7 @@ INCLUDES	:=
 # options for code generation
 #---------------------------------------------------------------------------------
 
-CFLAGS		= -g -O2 -Wall $(MACHDEP) $(INCLUDE) -DNIX_VERSION=$(NIX_VERSION)
+CFLAGS		= -g -O2 -Wall $(MACHDEP) $(INCLUDE)
 CXXFLAGS	= $(CFLAGS)
 
 LDFLAGS		= -g $(MACHDEP) -Wl,-Map,$(notdir $@).map

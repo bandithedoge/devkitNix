@@ -3,10 +3,6 @@
 
 #include <switch.h>
 
-#ifndef NIX_VERSION
-#define NIX_VERSION "Nix version unknown"
-#endif
-
 int main(int argc, char **argv)
 {
     //Initialize console. Using NULL as the second argument tells the console library to use the internal console structure as current one.
@@ -22,7 +18,7 @@ int main(int argc, char **argv)
     //Move the cursor to row 16 and column 20 and then prints "Hello World!"
     //To move the cursor you have to print "\x1b[r;cH", where r and c are respectively
     //the row and column where you want your cursor to move
-    printf("I was compiled with devkitNix using %s!", NIX_VERSION);
+    printf("I was compiled with devkitNix!");
 
     while(appletMainLoop())
     {

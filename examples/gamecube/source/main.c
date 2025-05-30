@@ -5,10 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#ifndef NIX_VERSION
-#define NIX_VERSION "Nix version unknown"
-#endif
-
 static void *xfb = NULL;
 static GXRModeObj *rmode = NULL;
 
@@ -18,7 +14,7 @@ int main(int argc, char **argv) {
 
   xfb = Initialise();
 
-  printf("\nI was compiled with devkitNix using %s!\n", NIX_VERSION);
+  printf("\nI was compiled with devkitNix!\n");
 
   while (1) {
 

@@ -11,10 +11,6 @@
 
 #include <stdio.h>
 
-#ifndef NIX_VERSION
-#define NIX_VERSION "Nix version unknown"
-#endif
-
 volatile int frame = 0;
 
 //---------------------------------------------------------------------------------
@@ -32,8 +28,7 @@ int main(void) {
 
   consoleDemoInit();
 
-  iprintf("I was compiled with devkitNix\n");
-  iprintf("using %s!", NIX_VERSION);
+  iprintf("I was compiled with devkitNix!\n");
 
   while (1) {
 
