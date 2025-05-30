@@ -48,7 +48,7 @@
         passthru = rec {
           CPATH = pkgs.lib.makeSearchPath "include" (builtins.map (x: "${finalAttrs.finalPackage}/opt/devkitpro/${x}") includePaths);
 
-          shellHook = ''
+          shellHook = pkgs.lib.warn "shellHook is deprecated, please consider using devkitNix stdenv packages instead (see README)" ''
             export DEVKITPRO="${finalAttrs.finalPackage}/opt/devkitpro"
             export DEVKITARM="$DEVKITPRO/devkitARM"
             export DEVKITPPC="$DEVKITPRO/devkitPPC"
@@ -58,7 +58,7 @@
         };
       });
 
-    packages = pkgs: {
+    packages = pkgs: rec {
       devkitA64 = mkDevkit pkgs {
         name = "devkitA64";
         src = ./sources/devkita64.json;
@@ -102,20 +102,31 @@
           "wut"
         ];
       };
+
+      stdenvA64 = pkgs.stdenvAdapters.addAttrsToDerivation {
+        nativeBuildInputs = [devkitA64];
+        env.DEVKITPRO = devkitA64 + "/opt/devkitpro";
+      } pkgs.stdenvNoCC;
+
+      stdenvARM = pkgs.stdenvAdapters.addAttrsToDerivation {
+        nativeBuildInputs = [devkitARM];
+        env.DEVKITPRO = devkitARM + "/opt/devkitpro";
+      } pkgs.stdenvNoCC;
+
+      stdenvPPC = pkgs.stdenvAdapters.addAttrsToDerivation {
+        nativeBuildInputs = [devkitPPC];
+        env.DEVKITPRO = devkitPPC + "/opt/devkitpro";
+      } pkgs.stdenvNoCC;
     };
   in
     (flake-utils.lib.eachDefaultSystem (system: let
       pkgs' = nixpkgs.legacyPackages.${system};
     in {
-      packages = {
-        inherit (packages pkgs') devkitA64 devkitARM devkitPPC;
-      };
+      packages = packages pkgs';
     }))
     // {
       overlays.default = final: prev: {
-        devkitNix = {
-          inherit (packages prev) devkitA64 devkitARM devkitPPC;
-        };
+        devkitNix = packages prev;
       };
     };
 }

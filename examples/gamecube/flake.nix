@@ -18,17 +18,14 @@
         overlays = [devkitNix.overlays.default];
       };
     in {
-      devShells.default = pkgs.mkShell {
-        buildInputs = [pkgs.devkitNix.devkitPPC];
-        inherit (pkgs.devkitNix.devkitPPC) shellHook;
-      };
-      packages.default = pkgs.stdenv.mkDerivation {
+      devShells.default = pkgs.mkShell.override {stdenv = pkgs.devkitNix.stdenvPPC;} {};
+      packages.default = pkgs.devkitNix.stdenvPPC.mkDerivation {
         name = "devkitPPC-example";
         src = ./.;
 
         makeFlags = ["TARGET=example"];
-        preBuild = pkgs.devkitNix.devkitPPC.shellHook;
         installPhase = ''
+          mkdir $out
           cp example.dol $out
         '';
       };

@@ -18,17 +18,14 @@
         overlays = [devkitNix.overlays.default];
       };
     in {
-      devShells.default = pkgs.mkShell {
-        buildInputs = [pkgs.devkitNix.devkitA64];
-        inherit (pkgs.devkitNix.devkitA64) shellHook;
-      };
-      packages.default = pkgs.stdenv.mkDerivation {
+      devShells.default = pkgs.mkShell.override {stdenv = pkgs.devkitNix.stdenvA64;} {};
+      packages.default = pkgs.devkitNix.stdenvA64.mkDerivation {
         name = "devkitA64-example";
         src = ./.;
 
         makeFlags = ["TARGET=example"];
-        preBuild = pkgs.devkitNix.devkitA64.shellHook;
         installPhase = ''
+          mkdir $out
           cp example.nro $out
         '';
       };

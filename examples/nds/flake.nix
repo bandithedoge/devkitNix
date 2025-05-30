@@ -18,19 +18,14 @@
         overlays = [devkitNix.overlays.default];
       };
     in {
-      devShells.default = pkgs.mkShell {
-        buildInputs = [pkgs.devkitNix.devkitARM];
-        shellHook = ''
-          ${pkgs.devkitNix.devkitARM.shellHook}
-        '';
-      };
-      packages.default = pkgs.stdenv.mkDerivation {
+      devShells.default = pkgs.mkShell.override {stdenv = pkgs.devkitNix.stdenvARM;} {};
+      packages.default = pkgs.devkitNix.stdenvARM.mkDerivation {
         name = "devkitARM-example";
         src = ./.;
 
         makeFlags = ["TARGET=example"];
-        preBuild = pkgs.devkitNix.devkitARM.shellHook;
         installPhase = ''
+          mkdir $out
           cp example.nds $out
         '';
       };
