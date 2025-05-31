@@ -125,12 +125,18 @@
 
         stdenvARM = pkgs.stdenvAdapters.addAttrsToDerivation {
           nativeBuildInputs = [ devkitARM ];
-          env.DEVKITPRO = devkitARM + "/opt/devkitpro";
+          env = rec {
+            DEVKITPRO = devkitARM + "/opt/devkitpro";
+            DEVKITARM = DEVKITPRO + "/devkitARM";
+          };
         } pkgs.stdenvNoCC;
 
         stdenvPPC = pkgs.stdenvAdapters.addAttrsToDerivation {
           nativeBuildInputs = [ devkitPPC ];
-          env.DEVKITPRO = devkitPPC + "/opt/devkitpro";
+          env = rec {
+            DEVKITPRO = devkitPPC + "/opt/devkitpro";
+            DEVKITPPC = DEVKITPPC + "/devkitPPC";
+          };
         } pkgs.stdenvNoCC;
       };
     in
