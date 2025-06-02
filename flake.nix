@@ -135,7 +135,7 @@
           nativeBuildInputs = [ devkitPPC ];
           env = rec {
             DEVKITPRO = devkitPPC + "/opt/devkitpro";
-            DEVKITPPC = DEVKITPPC + "/devkitPPC";
+            DEVKITPPC = DEVKITPRO + "/devkitPPC";
           };
         } pkgs.stdenvNoCC;
       };
