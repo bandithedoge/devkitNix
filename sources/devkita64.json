@@ -1,7 +1,7 @@
 {
   "imageName": "devkitpro/devkita64",
-  "imageDigest": "sha256:d1afab3b802d9df8d339ea238b29daa6a791dd5664d42e5865e713375db5f2c5",
-  "hash": "sha256-Jxks3+puRuGY2X21lWvv/xs7zsBOCjHEMs+W+8rEE3w=",
+  "imageDigest": "sha256:28cce88c59218bd0044f27625d2e4fc2c0a299ed719901cbb6d9ed45d5a437a3",
+  "hash": "sha256-41NcwLm/KVa0cbCu4zB/XHFdUmwIDV/lY8OassKwLTo=",
   "finalImageName": "devkitpro/devkita64",
   "finalImageTag": "latest"
 }
