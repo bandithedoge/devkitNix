@@ -6,11 +6,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1762478723,
-        "narHash": "sha256-jo0Tg7aO8axapPtJ6La3MIbvtzfMfl7vAn8CQquYdCI=",
+        "lastModified": 1762564862,
+        "narHash": "sha256-uFzULZiH9OXu1Z3Mi9ekLZEeZnH4wG91/D3DSXiG4YU=",
         "owner": "bandithedoge",
         "repo": "devkitNix",
-        "rev": "5a13593f346ff31af871d529f56aa81631b898d2",
+        "rev": "d13d67dd356b433b87994ab5568357dfb49f060a",
         "type": "github"
       },
       "original": {
