@@ -73,10 +73,14 @@
           };
         });
 
-      packages = pkgs: rec {
+      packages = pkgs: let
+        dockerArch = if pkgs.stdenv.hostPlatform.system == "x86_64-linux"
+          then "amd64"
+          else "arm64";
+      in rec {
         devkitA64 = mkDevkit pkgs {
           name = "devkitA64";
-          src = ./sources/devkita64.json;
+          src = ./sources/devkita64-${dockerArch}.json;
           includePaths = [
             "devkitA64"
             "devkitA64/aarch64-none-elf"
@@ -86,7 +90,7 @@
         };
         devkitARM = mkDevkit pkgs {
           name = "devkitARM";
-          src = ./sources/devkitarm.json;
+          src = ./sources/devkitarm-${dockerArch}.json;
           includePaths = [
             "devkitARM"
             "devkitARM/arm-none-eabi"
@@ -105,7 +109,7 @@
         };
         devkitPPC = mkDevkit pkgs {
           name = "devkitPPC";
-          src = ./sources/devkitppc.json;
+          src = ./sources/devkitppc-${dockerArch}.json;
           includePaths = [
             "devkitPPC"
             "devkitPPC/powerpc-eabi"
@@ -140,7 +144,7 @@
         } pkgs.stdenvNoCC;
       };
     in
-    (flake-utils.lib.eachDefaultSystem (
+    (flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (
       system:
       let
         pkgs' = nixpkgs.legacyPackages.${system};
